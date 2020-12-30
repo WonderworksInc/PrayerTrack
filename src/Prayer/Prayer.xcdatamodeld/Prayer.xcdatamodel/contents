@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DateEntity" representedClassName="DateEntity" syncable="YES">
+        <attribute name="dateAttribute" attributeType="Date" defaultDateTimeInterval="608225820" usesScalarValueType="NO"/>
+        <relationship name="prayersAnsweredRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrayerEntity" inverseName="dateAnsweredRelationship" inverseEntity="PrayerEntity"/>
+        <relationship name="prayersPrayedRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrayerEntity" inverseName="datesPrayedRelationship" inverseEntity="PrayerEntity"/>
+    </entity>
+    <entity name="PersonEntity" representedClassName="PersonEntity" syncable="YES">
+        <attribute name="idAttribute" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nameAttribute" attributeType="String" defaultValueString=""/>
+        <relationship name="prayersRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrayerEntity" inverseName="personRelationship" inverseEntity="PrayerEntity"/>
+    </entity>
+    <entity name="PrayerEntity" representedClassName="PrayerEntity" syncable="YES">
+        <attribute name="answerDescriptionAttribute" optional="YES" attributeType="String"/>
+        <attribute name="answeredAffirmativelyAttribute" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="answeredAttribute" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="archivedAttribute" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="descriptionAttribute" optional="YES" attributeType="String"/>
+        <attribute name="idAttribute" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="titleAttribute" attributeType="String" defaultValueString=""/>
+        <relationship name="dateAnsweredRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="prayersAnsweredRelationship" inverseEntity="DateEntity"/>
+        <relationship name="datesPrayedRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DateEntity" inverseName="prayersPrayedRelationship" inverseEntity="DateEntity"/>
+        <relationship name="personRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="prayersRelationship" inverseEntity="PersonEntity"/>
+        <relationship name="tagsRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TagEntity" inverseName="prayersRelationship" inverseEntity="TagEntity"/>
+    </entity>
+    <entity name="SettingsEntity" representedClassName="SettingsEntity" syncable="YES">
+        <attribute name="requireUnlockingAttribute" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="showArchivedPrayersAttribute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sortPrayersByAttribute" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="TagEntity" representedClassName="TagEntity" syncable="YES">
+        <attribute name="idAttribute" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="titleAttribute" attributeType="String" defaultValueString=""/>
+        <relationship name="prayersRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrayerEntity" inverseName="tagsRelationship" inverseEntity="PrayerEntity"/>
+    </entity>
+    <elements>
+        <element name="DateEntity" positionX="-56.20703125" positionY="-111.76953125" width="128" height="88"/>
+        <element name="PersonEntity" positionX="-53.609375" positionY="-26.02734375" width="128" height="88"/>
+        <element name="PrayerEntity" positionX="-385.97265625" positionY="-127.265625" width="128" height="208"/>
+        <element name="SettingsEntity" positionX="-207" positionY="-36" width="128" height="88"/>
+        <element name="TagEntity" positionX="-216" positionY="-45" width="128" height="88"/>
+    </elements>
+</model>

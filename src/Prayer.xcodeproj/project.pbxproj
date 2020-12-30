@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B5727D16242FE593002592E4 /* DateEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D14242FE593002592E4 /* DateEntity+CoreDataClass.swift */; };
+		B5727D17242FE593002592E4 /* DateEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D15242FE593002592E4 /* DateEntity+CoreDataProperties.swift */; };
+		B5727D23242FEFE1002592E4 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D1C242FEFE1002592E4 /* RKManager.swift */; };
+		B5727D24242FEFE1002592E4 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D1D242FEFE1002592E4 /* RKMonth.swift */; };
+		B5727D25242FEFE1002592E4 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D1E242FEFE1002592E4 /* RKCell.swift */; };
+		B5727D26242FEFE1002592E4 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D1F242FEFE1002592E4 /* RKViewController.swift */; };
+		B5727D27242FEFE1002592E4 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D20242FEFE1002592E4 /* RKWeekdayHeader.swift */; };
+		B5727D28242FEFE1002592E4 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D21242FEFE1002592E4 /* RKColorSettings.swift */; };
+		B5727D29242FEFE1002592E4 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D22242FEFE1002592E4 /* RKDate.swift */; };
+		B5727D2B242FFEF7002592E4 /* PrayerListViewSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D2A242FFEF7002592E4 /* PrayerListViewSelected.swift */; };
+		B5727D2D2430ED9F002592E4 /* VStackTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5727D2C2430ED9F002592E4 /* VStackTextView.swift */; };
+		B5A2B347241EB25F00DBB49E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2B346241EB25F00DBB49E /* AppDelegate.swift */; };
+		B5A2B349241EB25F00DBB49E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2B348241EB25F00DBB49E /* SceneDelegate.swift */; };
+		B5A2B34C241EB25F00DBB49E /* Prayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5A2B34A241EB25F00DBB49E /* Prayer.xcdatamodeld */; };
+		B5A2B34E241EB25F00DBB49E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2B34D241EB25F00DBB49E /* ContentView.swift */; };
+		B5A2B350241EB26000DBB49E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A2B34F241EB26000DBB49E /* Assets.xcassets */; };
+		B5A2B353241EB26000DBB49E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A2B352241EB26000DBB49E /* Preview Assets.xcassets */; };
+		B5A2B356241EB26000DBB49E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A2B354241EB26000DBB49E /* LaunchScreen.storyboard */; };
+		B5AC1260242F94D400F57007 /* PrayerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC125E242F94D400F57007 /* PrayerEntity+CoreDataClass.swift */; };
+		B5AC1261242F94D400F57007 /* PrayerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC125F242F94D400F57007 /* PrayerEntity+CoreDataProperties.swift */; };
+		B5AC1265242F96D300F57007 /* PrayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC1264242F96D300F57007 /* PrayerView.swift */; };
+		B5AC1270242FA03900F57007 /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC126E242FA03900F57007 /* PersonListView.swift */; };
+		B5AC1271242FA03900F57007 /* PrayerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC126F242FA03900F57007 /* PrayerListView.swift */; };
+		B5AC1278242FA06500F57007 /* PersonEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC1276242FA06500F57007 /* PersonEntity+CoreDataClass.swift */; };
+		B5AC1279242FA06500F57007 /* PersonEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC1277242FA06500F57007 /* PersonEntity+CoreDataProperties.swift */; };
+		B5AC127B242FA0ED00F57007 /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC127A242FA0ED00F57007 /* PersonView.swift */; };
+		B5AC127D242FAE8400F57007 /* NewPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC127C242FAE8400F57007 /* NewPersonView.swift */; };
+		B5AC127F242FB2D300F57007 /* NewPrayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC127E242FB2D300F57007 /* NewPrayerView.swift */; };
+		B5BF99992438E29E004ECBA9 /* TagEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99972438E29E004ECBA9 /* TagEntity+CoreDataClass.swift */; };
+		B5BF999A2438E29E004ECBA9 /* TagEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99982438E29E004ECBA9 /* TagEntity+CoreDataProperties.swift */; };
+		B5BF99A02438F096004ECBA9 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF999F2438F096004ECBA9 /* TagListView.swift */; };
+		B5BF99A22438F48E004ECBA9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99A12438F48E004ECBA9 /* TagView.swift */; };
+		B5BF99A52438F82A004ECBA9 /* SettingsEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99A32438F82A004ECBA9 /* SettingsEntity+CoreDataClass.swift */; };
+		B5BF99A62438F82A004ECBA9 /* SettingsEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99A42438F82A004ECBA9 /* SettingsEntity+CoreDataProperties.swift */; };
+		B5BF99A82438F852004ECBA9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BF99A72438F852004ECBA9 /* SettingsView.swift */; };
+		B5C01EE32440B9E800074587 /* OptionalComparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C01EE22440B9E800074587 /* OptionalComparable.swift */; };
+		B5CC2400245CF4C300CF646F /* DismissSheetDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CC23FF245CF4C300CF646F /* DismissSheetDoneButton.swift */; };
+		B5FA7FB52440C3E400B2A888 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FA7FB42440C3E400B2A888 /* CloudKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B5727D14242FE593002592E4 /* DateEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5727D15242FE593002592E4 /* DateEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5727D1C242FEFE1002592E4 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKManager.swift; path = Prayer/RKCalendar/RKManager.swift; sourceTree = SOURCE_ROOT; };
+		B5727D1D242FEFE1002592E4 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKMonth.swift; path = Prayer/RKCalendar/RKMonth.swift; sourceTree = SOURCE_ROOT; };
+		B5727D1E242FEFE1002592E4 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKCell.swift; path = Prayer/RKCalendar/RKCell.swift; sourceTree = SOURCE_ROOT; };
+		B5727D1F242FEFE1002592E4 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKViewController.swift; path = Prayer/RKCalendar/RKViewController.swift; sourceTree = SOURCE_ROOT; };
+		B5727D20242FEFE1002592E4 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKWeekdayHeader.swift; path = Prayer/RKCalendar/RKWeekdayHeader.swift; sourceTree = SOURCE_ROOT; };
+		B5727D21242FEFE1002592E4 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKColorSettings.swift; path = Prayer/RKCalendar/RKColorSettings.swift; sourceTree = SOURCE_ROOT; };
+		B5727D22242FEFE1002592E4 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RKDate.swift; path = Prayer/RKCalendar/RKDate.swift; sourceTree = SOURCE_ROOT; };
+		B5727D2A242FFEF7002592E4 /* PrayerListViewSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerListViewSelected.swift; sourceTree = "<group>"; };
+		B5727D2C2430ED9F002592E4 /* VStackTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VStackTextView.swift; sourceTree = "<group>"; };
+		B5A2B343241EB25F00DBB49E /* Prayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A2B346241EB25F00DBB49E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B5A2B348241EB25F00DBB49E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B5A2B34B241EB25F00DBB49E /* Prayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Prayer.xcdatamodel; sourceTree = "<group>"; };
+		B5A2B34D241EB25F00DBB49E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B5A2B34F241EB26000DBB49E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5A2B352241EB26000DBB49E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5A2B355241EB26000DBB49E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B5A2B357241EB26000DBB49E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5AC125E242F94D400F57007 /* PrayerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrayerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5AC125F242F94D400F57007 /* PrayerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrayerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5AC1264242F96D300F57007 /* PrayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerView.swift; sourceTree = "<group>"; };
+		B5AC126E242FA03900F57007 /* PersonListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
+		B5AC126F242FA03900F57007 /* PrayerListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrayerListView.swift; sourceTree = "<group>"; };
+		B5AC1276242FA06500F57007 /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5AC1277242FA06500F57007 /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5AC127A242FA0ED00F57007 /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		B5AC127C242FAE8400F57007 /* NewPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonView.swift; sourceTree = "<group>"; };
+		B5AC127E242FB2D300F57007 /* NewPrayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPrayerView.swift; sourceTree = "<group>"; };
+		B5BF99972438E29E004ECBA9 /* TagEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5BF99982438E29E004ECBA9 /* TagEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5BF999F2438F096004ECBA9 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		B5BF99A12438F48E004ECBA9 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		B5BF99A32438F82A004ECBA9 /* SettingsEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B5BF99A42438F82A004ECBA9 /* SettingsEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5BF99A72438F852004ECBA9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B5C01EE22440B9E800074587 /* OptionalComparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalComparable.swift; sourceTree = "<group>"; };
+		B5C01EE42440BECD00074587 /* Prayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Prayer.entitlements; sourceTree = "<group>"; };
+		B5CC23FF245CF4C300CF646F /* DismissSheetDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissSheetDoneButton.swift; sourceTree = "<group>"; };
+		B5FA7FB42440C3E400B2A888 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5A2B340241EB25F00DBB49E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5FA7FB52440C3E400B2A888 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B537CAF42440B81B0074F2BE /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				B5AC127C242FAE8400F57007 /* NewPersonView.swift */,
+				B5AC1276242FA06500F57007 /* PersonEntity+CoreDataClass.swift */,
+				B5AC1277242FA06500F57007 /* PersonEntity+CoreDataProperties.swift */,
+				B5AC126E242FA03900F57007 /* PersonListView.swift */,
+				B5AC127A242FA0ED00F57007 /* PersonView.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		B537CAF52440B8460074F2BE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B5BF99A32438F82A004ECBA9 /* SettingsEntity+CoreDataClass.swift */,
+				B5BF99A42438F82A004ECBA9 /* SettingsEntity+CoreDataProperties.swift */,
+				B5BF99A72438F852004ECBA9 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B537CAF62440B8630074F2BE /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				B5BF99972438E29E004ECBA9 /* TagEntity+CoreDataClass.swift */,
+				B5BF99982438E29E004ECBA9 /* TagEntity+CoreDataProperties.swift */,
+				B5BF999F2438F096004ECBA9 /* TagListView.swift */,
+				B5BF99A12438F48E004ECBA9 /* TagView.swift */,
+			);
+			path = Tag;
+			sourceTree = "<group>";
+		};
+		B537CAF72440B8780074F2BE /* Prayer */ = {
+			isa = PBXGroup;
+			children = (
+				B5AC127E242FB2D300F57007 /* NewPrayerView.swift */,
+				B5AC125E242F94D400F57007 /* PrayerEntity+CoreDataClass.swift */,
+				B5AC125F242F94D400F57007 /* PrayerEntity+CoreDataProperties.swift */,
+				B5AC126F242FA03900F57007 /* PrayerListView.swift */,
+				B5727D2A242FFEF7002592E4 /* PrayerListViewSelected.swift */,
+				B5AC1264242F96D300F57007 /* PrayerView.swift */,
+			);
+			path = Prayer;
+			sourceTree = "<group>";
+		};
+		B5A2B33A241EB25F00DBB49E = {
+			isa = PBXGroup;
+			children = (
+				B5A2B345241EB25F00DBB49E /* Prayer */,
+				B5A2B344241EB25F00DBB49E /* Products */,
+				B5FA7FB32440C3E400B2A888 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B5A2B344241EB25F00DBB49E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5A2B343241EB25F00DBB49E /* Prayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5A2B345241EB25F00DBB49E /* Prayer */ = {
+			isa = PBXGroup;
+			children = (
+				B5C01EE42440BECD00074587 /* Prayer.entitlements */,
+				B5A2B346241EB25F00DBB49E /* AppDelegate.swift */,
+				B5A2B34F241EB26000DBB49E /* Assets.xcassets */,
+				B5A2B34D241EB25F00DBB49E /* ContentView.swift */,
+				B5CC23FF245CF4C300CF646F /* DismissSheetDoneButton.swift */,
+				B5A2B357241EB26000DBB49E /* Info.plist */,
+				B5A2B354241EB26000DBB49E /* LaunchScreen.storyboard */,
+				B5A2B34A241EB25F00DBB49E /* Prayer.xcdatamodeld */,
+				B5A2B348241EB25F00DBB49E /* SceneDelegate.swift */,
+				B5A2B351241EB26000DBB49E /* Preview Content */,
+				B5AA7C842440B8CF008C9ECC /* BuiltIn */,
+				B5AA7C832440B8B7008C9ECC /* Date */,
+				B537CAF72440B8780074F2BE /* Prayer */,
+				B537CAF62440B8630074F2BE /* Tag */,
+				B537CAF52440B8460074F2BE /* Settings */,
+				B537CAF42440B81B0074F2BE /* Person */,
+				B5E5167F2440B661002DE35B /* RKCalendar */,
+				B5727D2C2430ED9F002592E4 /* VStackTextView.swift */,
+				B5C01EE22440B9E800074587 /* OptionalComparable.swift */,
+			);
+			path = Prayer;
+			sourceTree = "<group>";
+		};
+		B5A2B351241EB26000DBB49E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5A2B352241EB26000DBB49E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B5AA7C832440B8B7008C9ECC /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				B5727D14242FE593002592E4 /* DateEntity+CoreDataClass.swift */,
+				B5727D15242FE593002592E4 /* DateEntity+CoreDataProperties.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		B5AA7C842440B8CF008C9ECC /* BuiltIn */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuiltIn;
+			sourceTree = "<group>";
+		};
+		B5E5167F2440B661002DE35B /* RKCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				B5727D1E242FEFE1002592E4 /* RKCell.swift */,
+				B5727D21242FEFE1002592E4 /* RKColorSettings.swift */,
+				B5727D22242FEFE1002592E4 /* RKDate.swift */,
+				B5727D1C242FEFE1002592E4 /* RKManager.swift */,
+				B5727D1D242FEFE1002592E4 /* RKMonth.swift */,
+				B5727D1F242FEFE1002592E4 /* RKViewController.swift */,
+				B5727D20242FEFE1002592E4 /* RKWeekdayHeader.swift */,
+			);
+			path = RKCalendar;
+			sourceTree = "<group>";
+		};
+		B5FA7FB32440C3E400B2A888 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5FA7FB42440C3E400B2A888 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5A2B342241EB25F00DBB49E /* Prayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5A2B35A241EB26000DBB49E /* Build configuration list for PBXNativeTarget "Prayer" */;
+			buildPhases = (
+				B5A2B33F241EB25F00DBB49E /* Sources */,
+				B5A2B340241EB25F00DBB49E /* Frameworks */,
+				B5A2B341241EB25F00DBB49E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Prayer;
+			productName = Prayer;
+			productReference = B5A2B343241EB25F00DBB49E /* Prayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5A2B33B241EB25F00DBB49E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1230;
+				ORGANIZATIONNAME = Ben;
+				TargetAttributes = {
+					B5A2B342241EB25F00DBB49E = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = B5A2B33E241EB25F00DBB49E /* Build configuration list for PBXProject "Prayer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5A2B33A241EB25F00DBB49E;
+			productRefGroup = B5A2B344241EB25F00DBB49E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5A2B342241EB25F00DBB49E /* Prayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5A2B341241EB25F00DBB49E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5A2B356241EB26000DBB49E /* LaunchScreen.storyboard in Resources */,
+				B5A2B353241EB26000DBB49E /* Preview Assets.xcassets in Resources */,
+				B5A2B350241EB26000DBB49E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5A2B33F241EB25F00DBB49E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5AC127F242FB2D300F57007 /* NewPrayerView.swift in Sources */,
+				B5727D26242FEFE1002592E4 /* RKViewController.swift in Sources */,
+				B5727D2B242FFEF7002592E4 /* PrayerListViewSelected.swift in Sources */,
+				B5BF99A02438F096004ECBA9 /* TagListView.swift in Sources */,
+				B5AC1278242FA06500F57007 /* PersonEntity+CoreDataClass.swift in Sources */,
+				B5A2B347241EB25F00DBB49E /* AppDelegate.swift in Sources */,
+				B5AC1265242F96D300F57007 /* PrayerView.swift in Sources */,
+				B5727D23242FEFE1002592E4 /* RKManager.swift in Sources */,
+				B5727D24242FEFE1002592E4 /* RKMonth.swift in Sources */,
+				B5C01EE32440B9E800074587 /* OptionalComparable.swift in Sources */,
+				B5727D17242FE593002592E4 /* DateEntity+CoreDataProperties.swift in Sources */,
+				B5CC2400245CF4C300CF646F /* DismissSheetDoneButton.swift in Sources */,
+				B5AC1261242F94D400F57007 /* PrayerEntity+CoreDataProperties.swift in Sources */,
+				B5AC1271242FA03900F57007 /* PrayerListView.swift in Sources */,
+				B5727D16242FE593002592E4 /* DateEntity+CoreDataClass.swift in Sources */,
+				B5727D29242FEFE1002592E4 /* RKDate.swift in Sources */,
+				B5A2B34C241EB25F00DBB49E /* Prayer.xcdatamodeld in Sources */,
+				B5A2B34E241EB25F00DBB49E /* ContentView.swift in Sources */,
+				B5BF99A62438F82A004ECBA9 /* SettingsEntity+CoreDataProperties.swift in Sources */,
+				B5AC1270242FA03900F57007 /* PersonListView.swift in Sources */,
+				B5AC1260242F94D400F57007 /* PrayerEntity+CoreDataClass.swift in Sources */,
+				B5AC127B242FA0ED00F57007 /* PersonView.swift in Sources */,
+				B5727D25242FEFE1002592E4 /* RKCell.swift in Sources */,
+				B5BF99992438E29E004ECBA9 /* TagEntity+CoreDataClass.swift in Sources */,
+				B5727D27242FEFE1002592E4 /* RKWeekdayHeader.swift in Sources */,
+				B5BF999A2438E29E004ECBA9 /* TagEntity+CoreDataProperties.swift in Sources */,
+				B5BF99A52438F82A004ECBA9 /* SettingsEntity+CoreDataClass.swift in Sources */,
+				B5BF99A82438F852004ECBA9 /* SettingsView.swift in Sources */,
+				B5AC127D242FAE8400F57007 /* NewPersonView.swift in Sources */,
+				B5AC1279242FA06500F57007 /* PersonEntity+CoreDataProperties.swift in Sources */,
+				B5A2B349241EB25F00DBB49E /* SceneDelegate.swift in Sources */,
+				B5BF99A22438F48E004ECBA9 /* TagView.swift in Sources */,
+				B5727D28242FEFE1002592E4 /* RKColorSettings.swift in Sources */,
+				B5727D2D2430ED9F002592E4 /* VStackTextView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B5A2B354241EB26000DBB49E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5A2B355241EB26000DBB49E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B5A2B358241EB26000DBB49E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B5A2B359241EB26000DBB49E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5A2B35B241EB26000DBB49E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Prayer/Prayer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
+				DEVELOPMENT_ASSET_PATHS = "\"Prayer/Preview Content\"";
+				DEVELOPMENT_TEAM = BHFZ74LJ2C;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Prayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = wonderworks.Prayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B5A2B35C241EB26000DBB49E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Prayer/Prayer.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.3;
+				DEVELOPMENT_ASSET_PATHS = "\"Prayer/Preview Content\"";
+				DEVELOPMENT_TEAM = BHFZ74LJ2C;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Prayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.3;
+				PRODUCT_BUNDLE_IDENTIFIER = wonderworks.Prayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5A2B33E241EB25F00DBB49E /* Build configuration list for PBXProject "Prayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5A2B358241EB26000DBB49E /* Debug */,
+				B5A2B359241EB26000DBB49E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B5A2B35A241EB26000DBB49E /* Build configuration list for PBXNativeTarget "Prayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5A2B35B241EB26000DBB49E /* Debug */,
+				B5A2B35C241EB26000DBB49E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B5A2B34A241EB25F00DBB49E /* Prayer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B5A2B34B241EB25F00DBB49E /* Prayer.xcdatamodel */,
+			);
+			currentVersion = B5A2B34B241EB25F00DBB49E /* Prayer.xcdatamodel */;
+			path = Prayer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B5A2B33B241EB25F00DBB49E /* Project object */;
+}
