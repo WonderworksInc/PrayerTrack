@@ -39,7 +39,7 @@ struct PrayerPrayedTodayCheckbox: View
             prayer.addToDatesPrayedRelationship(getOrCreateDateFromDatabase(date: Date()))
         }
 
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -52,7 +52,7 @@ struct PrayerPrayedTodayCheckbox: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func getOrCreateDateFromDatabase(date: Date) -> DateEntity
@@ -232,13 +232,24 @@ struct PrayersByTitleList: View
         entity: PrayerEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \PrayerEntity.titleAttribute, ascending: true)]
     ) var prayers: FetchedResults<PrayerEntity>
+    @FetchRequest(
+        entity: SettingsEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \SettingsEntity.sortPrayersByAttribute, ascending: true)]
+    ) var settingsList: FetchedResults<SettingsEntity>
     @Binding var inTodayMode: Bool
     
     var body: some View
     {
+        let showArchivedPrayersChoice = Binding<ShowArchivedPrayersOption>(
+            get: {ShowArchivedPrayersOption(rawValue: self.settingsList[0].showArchivedPrayersAttribute)!},
+            set: {let _ = $0.rawValue}
+        )
+
         List
         {
-            ForEach(prayers, id: \.id)
+            ForEach(
+                prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                id: \.id)
             {prayer in
                 PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .title)
             }
@@ -254,11 +265,12 @@ struct PrayersByTitleList: View
             deletePrayer(prayer: prayers[offset])
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
-                try moc.save(); moc.refreshAllObjects()
+                try moc.save()
+                moc.refreshAllObjects()
             }
             catch
             {
@@ -267,7 +279,7 @@ struct PrayersByTitleList: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }
 
@@ -342,18 +354,9 @@ struct PrayersByPersonList: View
             {person in
                 Section(header: Text("\(person.name)"))
                 {
-                    ForEach(person.prayers.filter(
-                        {
-                            // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED AND WHETHER THE USER CHOSE TO SEE ARCHIVED PRAYERS.
-                            let prayer_is_archived = $0.archivedAttribute
-                            switch (showArchivedPrayersChoice.wrappedValue)
-                            {
-                                case .showNonArchivedOnly: return !prayer_is_archived
-                                case .showArchivedOnly: return prayer_is_archived
-                                default: return true
-                            }
-                        }
-                    ), id: \.id)
+                    ForEach(
+                        person.prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .person)
                     }
@@ -397,7 +400,10 @@ struct PrayersByTagList: View
         entity: PrayerEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \PrayerEntity.titleAttribute, ascending: true)]
     ) var prayers: FetchedResults<PrayerEntity>
-
+    @FetchRequest(
+        entity: SettingsEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \SettingsEntity.sortPrayersByAttribute, ascending: true)]
+    ) var settingsList: FetchedResults<SettingsEntity>
     @Binding var inTodayMode: Bool
     /// Necessary for unknown reason.  Sometimes (and not always), the view won't update when the prayer's
     /// tag changes.  This forces it to update.
@@ -408,13 +414,20 @@ struct PrayersByTagList: View
         let prayers_with_no_tag = prayers.filter({($0.tags.isEmpty)})
         let tags_with_prayers = tags.filter({!$0.prayers.isEmpty})
 
+        let showArchivedPrayersChoice = Binding<ShowArchivedPrayersOption>(
+            get: {ShowArchivedPrayersOption(rawValue: self.settingsList[0].showArchivedPrayersAttribute)!},
+            set: {let _ = $0.rawValue}
+        )
+
         return List
         {if (forceRefresh || !forceRefresh){
             ForEach(tags_with_prayers, id: \.id)
             {tag in
                 Section(header: Text("\(tag.title)"))
                 {
-                    ForEach(tag.prayers, id: \.id)
+                    ForEach(
+                        tag.prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .tag)
                     }
@@ -431,7 +444,9 @@ struct PrayersByTagList: View
             {
                 Section(header: Text("No tag"))
                 {
-                    return ForEach(prayers_with_no_tag, id: \.id)
+                    return ForEach(
+                        prayers_with_no_tag.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .tag)
                     }
@@ -483,7 +498,7 @@ struct PrayerListView: View
             get: {SortPrayersByOption(rawValue: self.settingsList[0].sortPrayersByAttribute)!},
             set: {
                 self.settingsList[0].sortPrayersByAttribute = $0.rawValue
-                if self.moc.hasChanges
+                /*if self.moc.hasChanges
                 {
                     do
                     {
@@ -496,7 +511,7 @@ struct PrayerListView: View
                         let nserror = error as NSError
                         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                     }
-                }
+                }*/
             })
         
         return NavigationView
@@ -560,4 +575,25 @@ struct PrayerListView: View
             }
         }*/
     }
+}
+
+/// Returns a closure for the filter() function of an Array or FetchedResults<> of type Prayer Entity.
+/// The closure returns whether the prayer should be shown to the user based on the "show_archived_prayers"
+/// and whether the prayer is archived.
+/// \return A closure for the filter() function of an Array or FetchedResults<> of type Prayer Entity.
+/// \date 2020-01-01
+func GetArchivedFilter(_ show_archived_prayers_option: ShowArchivedPrayersOption) -> (PrayerEntity) -> Bool
+{
+    let closure = { (prayer: PrayerEntity) -> Bool in
+        // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED AND WHETHER THE USER CHOSE TO SEE ARCHIVED PRAYERS.
+        let prayer_is_archived = prayer.archivedAttribute
+        switch (show_archived_prayers_option)
+        {
+            case .showNonArchivedOnly: return !prayer_is_archived
+            case .showArchivedOnly: return prayer_is_archived
+            default: return true
+        }
+    }
+
+    return closure
 }

@@ -133,7 +133,7 @@ struct TagView: View
         //tag.prayersRelationship = Set(prayersState) as NSSet
     
         // SAVE THE PRAYER TO CORE DATA.
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -146,7 +146,7 @@ struct TagView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func deletePrayers(at offsets: IndexSet)
@@ -156,7 +156,7 @@ struct TagView: View
             deletePrayer(prayer: tag.prayers[offset])
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -169,7 +169,7 @@ struct TagView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func returnToLastView()

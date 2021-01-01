@@ -45,7 +45,7 @@ struct TagCheckboxRow: View
             prayer.addToTagsRelationship(tag)
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -58,7 +58,7 @@ struct TagCheckboxRow: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func prayerTagged() -> Bool
@@ -339,7 +339,7 @@ struct PrayerView: View
         }
         
         // SAVE THE PRAYER TO CORE DATA.
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -352,7 +352,7 @@ struct PrayerView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func getOrCreateDateFromDatabase(date: Date) -> DateEntity
@@ -382,7 +382,7 @@ struct PrayerView: View
             deleteDateIfEmtpy(date: date)
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -395,7 +395,7 @@ struct PrayerView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func getTagsString() -> String

@@ -127,7 +127,7 @@ func deletePrayer(prayer: PrayerEntity)
     // know why.  This appears to fix it, but I'm sure it's not the right way to go about this.
     return
 
-    if moc.hasChanges
+    /*if moc.hasChanges
     {
         do
         {
@@ -141,5 +141,5 @@ func deletePrayer(prayer: PrayerEntity)
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-    }
+    }*/
 }

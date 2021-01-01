@@ -74,8 +74,8 @@ struct ContentView: View
         if self.settingsList.isEmpty
         {
             let settings = SettingsEntity(context: self.moc)
-            settings.showArchivedPrayersAttribute = 0
-            settings.sortPrayersByAttribute = 0
+            settings.showArchivedPrayersAttribute = ShowArchivedPrayersOption.showNonArchivedOnly.rawValue
+            settings.sortPrayersByAttribute = SortPrayersByOption.person.rawValue
             settings.requireUnlockingAttribute = false
 
             if self.moc.hasChanges
@@ -163,6 +163,23 @@ struct ContentView: View
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification))
         { _ in
+
+            if self.moc.hasChanges
+            {
+                do
+                {
+                    try self.moc.save()
+                    self.moc.refreshAllObjects()
+                }
+                catch
+                {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
+
             self.receivedDidBecomeActiveNotification = false
             self.isLocked = true
         }

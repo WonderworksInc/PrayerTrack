@@ -105,7 +105,7 @@ struct PersonListView: View {
             moc.delete(people[offset])
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -118,7 +118,7 @@ struct PersonListView: View {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }
 

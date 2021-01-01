@@ -92,7 +92,7 @@ func deleteDateIfEmtpy(date: DateEntity)
         }
 
         date_moc.delete(date)
-        if date_moc.hasChanges
+        /*if date_moc.hasChanges
         {
             do
             {
@@ -105,6 +105,6 @@ func deleteDateIfEmtpy(date: DateEntity)
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }

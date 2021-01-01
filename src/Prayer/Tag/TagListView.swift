@@ -47,7 +47,7 @@ struct NewTagView: View
         tag.id = UUID()
         
         // SAVE THE CHANGES TO CORE DATA.
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -60,7 +60,7 @@ struct NewTagView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }
 
@@ -143,7 +143,7 @@ struct TagListView: View {
             moc.delete(tags[offset])
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -156,6 +156,6 @@ struct TagListView: View {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }

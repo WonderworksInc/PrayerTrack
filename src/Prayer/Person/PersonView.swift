@@ -167,7 +167,7 @@ struct PersonView: View {
         //person.prayersRelationship = Set(prayersState) as NSSet
     
         // SAVE THE PRAYER TO CORE DATA.
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -180,7 +180,7 @@ struct PersonView: View {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func deletePrayers(at offsets: IndexSet)
@@ -190,7 +190,7 @@ struct PersonView: View {
             deletePrayer(prayer: person.prayers[offset])
         }
         
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -203,7 +203,7 @@ struct PersonView: View {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
     
     func returnToLastView()

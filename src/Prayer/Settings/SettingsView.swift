@@ -62,7 +62,7 @@ struct SettingsView: View
         get: {ShowArchivedPrayersOption(rawValue: self.settingsList[0].showArchivedPrayersAttribute)!},
         set: {
             self.settingsList[0].showArchivedPrayersAttribute = $0.rawValue
-            if self.moc.hasChanges
+            /*if self.moc.hasChanges
             {
                 do
                 {
@@ -75,14 +75,14 @@ struct SettingsView: View
                     let nserror = error as NSError
                     fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                 }
-            }
+            }*/
         })
 
         let sortPrayersByChoice = Binding<SortPrayersByOption>(
             get: {SortPrayersByOption(rawValue: self.settingsList[0].sortPrayersByAttribute)!},
             set: {
                 self.settingsList[0].sortPrayersByAttribute = $0.rawValue
-                if self.moc.hasChanges
+                /*if self.moc.hasChanges
                 {
                     do
                     {
@@ -95,7 +95,7 @@ struct SettingsView: View
                         let nserror = error as NSError
                         fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                     }
-                }
+                }*/
             })
 
         let requireUnlockingChoice = Binding<Bool>(

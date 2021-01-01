@@ -47,7 +47,7 @@ struct NewPersonView: View
         person.id = UUID()
         
         // SAVE THE PRAYER TO CORE DATA.
-        if moc.hasChanges
+        /*if moc.hasChanges
         {
             do
             {
@@ -62,6 +62,6 @@ struct NewPersonView: View
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
-        }
+        }*/
     }
 }
