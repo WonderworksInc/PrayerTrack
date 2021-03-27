@@ -168,7 +168,15 @@ struct PrayerView: View
             Form
             {
                 VStackTextView(top: title, bottom: "Title")
-                VStackTextView(top: descriptionText, bottom: "Description")
+                NavigationLink(
+                    destination:
+                        TextEditorCommitOnlyOnDisappear(text: descriptionText)
+                        .navigationBarTitle("Description/Notes"),
+                    label: {
+                        let added_text = (descriptionText.wrappedValue.isEmpty ? "" : ":\n" + descriptionText.wrappedValue)
+                        Text("Description/Notes" + added_text).lineLimit(2)
+                    }
+                )
                 Picker(
                     "Person",
                     // The Picker's selection must be a Binding<A>, where A is the ForEach's id parameter's type.
@@ -196,7 +204,15 @@ struct PrayerView: View
                         if (answered.wrappedValue)
                         {
                             Toggle(isOn: answeredAffirmatively, label: {Text("Answered affirmatively")})
-                            VStackTextView(top: answerDescription, bottom: "Answered description")
+                            NavigationLink(
+                                destination:
+                                    TextEditorCommitOnlyOnDisappear(text: answerDescription)
+                                    .navigationBarTitle("Answer Description/Notes"),
+                                label: {
+                                    let added_text = (answerDescription.wrappedValue.isEmpty ? "" : ":\n" + answerDescription.wrappedValue)
+                                    Text("Answer Description/Notes" + added_text).lineLimit(2)
+                                }
+                            )
                             HStack {
                                 Text("Answered date")
                                 Spacer()

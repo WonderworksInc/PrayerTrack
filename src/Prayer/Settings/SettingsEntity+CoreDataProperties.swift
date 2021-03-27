@@ -17,6 +17,7 @@ extension SettingsEntity {
     }
 
     @NSManaged public var showArchivedPrayersAttribute: Int16
+    @NSManaged public var showAnsweredPrayersAttribute: Int16
     @NSManaged public var sortPrayersByAttribute: Int16
     @NSManaged public var requireUnlockingAttribute: Bool
 }
@@ -26,6 +27,7 @@ extension SettingsEntity: Comparable
     public static func == (left: SettingsEntity, right: SettingsEntity) -> Bool
     {
         if (left.showArchivedPrayersAttribute != right.showArchivedPrayersAttribute) {return false}
+        if (left.showAnsweredPrayersAttribute != right.showAnsweredPrayersAttribute) {return false}
         if (left.sortPrayersByAttribute != right.sortPrayersByAttribute) {return false}
         if (left.requireUnlockingAttribute != right.requireUnlockingAttribute) {return false}
         return true
@@ -34,6 +36,7 @@ extension SettingsEntity: Comparable
     public static func < (left: SettingsEntity, right: SettingsEntity) -> Bool
     {
         if (left.showArchivedPrayersAttribute != right.showArchivedPrayersAttribute) {return left.showArchivedPrayersAttribute < right.showArchivedPrayersAttribute}
+        if (left.showAnsweredPrayersAttribute != right.showAnsweredPrayersAttribute) {return left.showAnsweredPrayersAttribute < right.showAnsweredPrayersAttribute}
         if (left.sortPrayersByAttribute != right.sortPrayersByAttribute) {return left.sortPrayersByAttribute < right.sortPrayersByAttribute}
         if (left.requireUnlockingAttribute != right.requireUnlockingAttribute) {return left.requireUnlockingAttribute}
         return false

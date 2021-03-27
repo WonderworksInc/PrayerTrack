@@ -245,10 +245,15 @@ struct PrayersByTitleList: View
             set: {let _ = $0.rawValue}
         )
 
+        let showAnsweredPrayersChoice = Binding<ShowAnsweredPrayersOption>(
+            get: {ShowAnsweredPrayersOption(rawValue: self.settingsList[0].showAnsweredPrayersAttribute)!},
+            set: {let _ = $0.rawValue}
+        )
+
         List
         {
             ForEach(
-                prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                prayers.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
                 id: \.id)
             {prayer in
                 PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .title)
@@ -308,6 +313,11 @@ struct PrayersByPersonList: View
             set: {let _ = $0.rawValue}
         )
 
+        let showAnsweredPrayersChoice = Binding<ShowAnsweredPrayersOption>(
+            get: {ShowAnsweredPrayersOption(rawValue: self.settingsList[0].showAnsweredPrayersAttribute)!},
+            set: {let _ = $0.rawValue}
+        )
+
         let prayers_with_no_person = prayers.filter(
             {
                 let prayer_has_person = (nil != $0.personRelationship)
@@ -316,14 +326,8 @@ struct PrayersByPersonList: View
                     return false
                 }
 
-                // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED AND WHETHER THE USER CHOSE TO SEE ARCHIVED PRAYERS.
-                let prayer_is_archived = $0.archivedAttribute
-                switch (showArchivedPrayersChoice.wrappedValue)
-                {
-                    case .showNonArchivedOnly: return !prayer_is_archived
-                    case .showArchivedOnly: return prayer_is_archived
-                    default: return true
-                }
+                // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED/ANSWERED AND WHETHER THE USER CHOSE TO SEE THEM.
+                return ShowPrayer($0, showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)
             }
         )
 
@@ -335,16 +339,7 @@ struct PrayersByPersonList: View
                     return false
                 }
 
-                switch (showArchivedPrayersChoice.wrappedValue)
-                {
-                    case .showNonArchivedOnly:
-                        let all_prayers_for_person_archived = $0.prayers.allSatisfy({$0.archivedAttribute})
-                        return !all_prayers_for_person_archived
-                    case .showArchivedOnly:
-                        let all_prayers_for_person_not_archived = $0.prayers.allSatisfy({!$0.archivedAttribute})
-                        return !all_prayers_for_person_not_archived
-                    default: return true
-                }
+                return $0.prayers.contains(where: {return ShowPrayer($0, showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)})
             }
         )
         
@@ -355,7 +350,7 @@ struct PrayersByPersonList: View
                 Section(header: Text("\(person.name)"))
                 {
                     ForEach(
-                        person.prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        person.prayers.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
                         id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .person)
@@ -411,12 +406,39 @@ struct PrayersByTagList: View
     
     var body: some View
     {
-        let prayers_with_no_tag = prayers.filter({($0.tags.isEmpty)})
-        let tags_with_prayers = tags.filter({!$0.prayers.isEmpty})
-
         let showArchivedPrayersChoice = Binding<ShowArchivedPrayersOption>(
             get: {ShowArchivedPrayersOption(rawValue: self.settingsList[0].showArchivedPrayersAttribute)!},
             set: {let _ = $0.rawValue}
+        )
+
+        let showAnsweredPrayersChoice = Binding<ShowAnsweredPrayersOption>(
+            get: {ShowAnsweredPrayersOption(rawValue: self.settingsList[0].showAnsweredPrayersAttribute)!},
+            set: {let _ = $0.rawValue}
+        )
+
+        let prayers_with_no_tag = prayers.filter(
+            {
+                let prayer_has_tag = !$0.tags.isEmpty
+                if (prayer_has_tag)
+                {
+                    return false
+                }
+
+                // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED/ANSWERED AND WHETHER THE USER CHOSE TO SEE THEM.
+                return ShowPrayer($0, showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)
+            }
+        )
+
+        let tags_with_prayers = tags.filter(
+            {
+                let tag_has_prayers = !$0.prayers.isEmpty
+                if (!tag_has_prayers)
+                {
+                    return false
+                }
+
+                return $0.prayers.contains(where: {return ShowPrayer($0, showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)})
+            }
         )
 
         return List
@@ -426,7 +448,7 @@ struct PrayersByTagList: View
                 Section(header: Text("\(tag.title)"))
                 {
                     ForEach(
-                        tag.prayers.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        tag.prayers.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
                         id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .tag)
@@ -445,7 +467,7 @@ struct PrayersByTagList: View
                 Section(header: Text("No tag"))
                 {
                     return ForEach(
-                        prayers_with_no_tag.filter(GetArchivedFilter(showArchivedPrayersChoice.wrappedValue)),
+                        prayers_with_no_tag.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
                         id: \.id)
                     {prayer in
                         PrayerListRow(prayer: prayer, inTodayMode: self.$inTodayMode, mode: .tag)
@@ -577,22 +599,59 @@ struct PrayerListView: View
     }
 }
 
+/// \date 2020-01-01
+func ShowPrayer(
+    _ prayer: PrayerEntity,
+    _ show_archived_prayers_option: ShowArchivedPrayersOption,
+    _ show_answered_prayers_option: ShowAnsweredPrayersOption) -> Bool
+{
+    let prayer_is_archived = prayer.archivedAttribute
+    let prayer_is_answered = prayer.answeredAttribute
+
+    if prayer_is_archived
+    {
+        if (show_archived_prayers_option == .showNonArchivedOnly)
+        {
+            return false
+        }
+    }
+    else
+    {
+        if (show_archived_prayers_option == .showArchivedOnly)
+        {
+            return false
+        }
+    }
+
+    if prayer_is_answered
+    {
+        if (show_answered_prayers_option == .showUnansweredOnly)
+        {
+            return false
+        }
+    }
+    else
+    {
+        if (show_answered_prayers_option == .showAnsweredOnly)
+        {
+            return false
+        }
+    }
+
+    return true
+}
+
 /// Returns a closure for the filter() function of an Array or FetchedResults<> of type Prayer Entity.
 /// The closure returns whether the prayer should be shown to the user based on the "show_archived_prayers"
-/// and whether the prayer is archived.
+/// and "show_answered_prayers" and whether the prayer is archived/answered.
 /// \return A closure for the filter() function of an Array or FetchedResults<> of type Prayer Entity.
 /// \date 2020-01-01
-func GetArchivedFilter(_ show_archived_prayers_option: ShowArchivedPrayersOption) -> (PrayerEntity) -> Bool
+func GetShowFilter(
+    _ show_archived_prayers_option: ShowArchivedPrayersOption,
+    _ show_answered_prayers_option: ShowAnsweredPrayersOption) -> (PrayerEntity) -> Bool
 {
     let closure = { (prayer: PrayerEntity) -> Bool in
-        // SHOW PRAYERS BASED ON WHETHER THE PRAYER IS ARCHIVED AND WHETHER THE USER CHOSE TO SEE ARCHIVED PRAYERS.
-        let prayer_is_archived = prayer.archivedAttribute
-        switch (show_archived_prayers_option)
-        {
-            case .showNonArchivedOnly: return !prayer_is_archived
-            case .showArchivedOnly: return prayer_is_archived
-            default: return true
-        }
+        return ShowPrayer(prayer, show_archived_prayers_option, show_answered_prayers_option)
     }
 
     return closure

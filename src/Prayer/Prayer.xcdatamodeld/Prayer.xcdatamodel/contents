@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="DateEntity" representedClassName="DateEntity" syncable="YES">
         <attribute name="dateAttribute" attributeType="Date" defaultDateTimeInterval="608225820" usesScalarValueType="NO"/>
         <relationship name="prayersAnsweredRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PrayerEntity" inverseName="dateAnsweredRelationship" inverseEntity="PrayerEntity"/>
@@ -25,6 +25,7 @@
     </entity>
     <entity name="SettingsEntity" representedClassName="SettingsEntity" syncable="YES">
         <attribute name="requireUnlockingAttribute" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="showAnsweredPrayersAttribute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="showArchivedPrayersAttribute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sortPrayersByAttribute" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
@@ -37,7 +38,7 @@
         <element name="DateEntity" positionX="-56.20703125" positionY="-111.76953125" width="128" height="88"/>
         <element name="PersonEntity" positionX="-53.609375" positionY="-26.02734375" width="128" height="88"/>
         <element name="PrayerEntity" positionX="-385.97265625" positionY="-127.265625" width="128" height="208"/>
-        <element name="SettingsEntity" positionX="-207" positionY="-36" width="128" height="88"/>
+        <element name="SettingsEntity" positionX="-207" positionY="-36" width="128" height="89"/>
         <element name="TagEntity" positionX="-216" positionY="-45" width="128" height="88"/>
     </elements>
 </model>

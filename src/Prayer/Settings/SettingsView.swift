@@ -41,9 +41,29 @@ extension ShowArchivedPrayersOption
     {
         switch self
         {
-            case .showAll: return "All"
+            case .showAll: return "Both"
             case .showNonArchivedOnly: return "Non-archived"
             case .showArchivedOnly: return "Archived"
+        }
+    }
+}
+
+enum ShowAnsweredPrayersOption: Int16, CaseIterable
+{
+    case showAll = 0
+    case showUnansweredOnly = 1
+    case showAnsweredOnly = 2
+}
+
+extension ShowAnsweredPrayersOption
+{
+    func toString() -> String
+    {
+        switch self
+        {
+            case .showAll: return "Both"
+            case .showUnansweredOnly: return "Unanswered"
+            case .showAnsweredOnly: return "Answered"
         }
     }
 }
@@ -78,6 +98,10 @@ struct SettingsView: View
             }*/
         })
 
+        let showAnsweredPrayersChoice = Binding<ShowAnsweredPrayersOption>(
+            get: {ShowAnsweredPrayersOption(rawValue: self.settingsList[0].showAnsweredPrayersAttribute)!},
+            set: {self.settingsList[0].showAnsweredPrayersAttribute = $0.rawValue})
+
         let sortPrayersByChoice = Binding<SortPrayersByOption>(
             get: {SortPrayersByOption(rawValue: self.settingsList[0].sortPrayersByAttribute)!},
             set: {
@@ -107,8 +131,19 @@ struct SettingsView: View
         {
             Form
             {
-                Section(header: Text("Show which prayers?"))
+                Section(header: Text("Show which prayers in Prayer tab?"))
                 {
+                    Picker(
+                        "Show which prayers?",
+                        // The Picker's selection must be a Binding<A>, where A is the ForEach's id parameter's type.
+                        selection: showAnsweredPrayersChoice)
+                    {
+                        ForEach(ShowAnsweredPrayersOption.allCases, id: \.self)
+                        {option in
+                            Text(option.toString())
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                     Picker(
                         "Show which prayers?",
                         // The Picker's selection must be a Binding<A>, where A is the ForEach's id parameter's type.
