@@ -6,6 +6,18 @@
 //  Copyright © 2020 Ben. All rights reserved.
 //
 
+//// https://www.lukecsmith.co.uk/2019/08/28/logging-and-debugging-without-xcode-using-oslog/
+//import Foundation
+//import os.log
+//
+//extension OSLog {
+//    private static var subsystem = Bundle.main.bundleIdentifier!
+//
+//    static let ui = OSLog(subsystem: subsystem, category: "UI")
+//    static let firebase = OSLog(subsystem: subsystem, category: "Firebase")
+//}
+
+
 import LocalAuthentication
 import SwiftUI
 
@@ -77,6 +89,8 @@ struct ContentView: View
             settings.showArchivedPrayersAttribute = ShowArchivedPrayersOption.showNonArchivedOnly.rawValue
             settings.sortPrayersByAttribute = SortPrayersByOption.person.rawValue
             settings.requireUnlockingAttribute = false
+            /// \todo What about this setting?
+            //settings.showAnsweredPrayersAttribute
 
             if self.moc.hasChanges
             {
@@ -93,7 +107,7 @@ struct ContentView: View
                 }
             }
         }
-        
+
         return TabView(selection: $selectedTabIndex)
         {
             PrayerListView()
@@ -146,11 +160,15 @@ struct ContentView: View
             self.authenticate()
 
             self.isActive = !self.isLocked})
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification))
+        // As of iOS 14, must use willEnterForegroundNotification instead of didBecomeActiveNotification.
+        // With didBecomeActiveNotification, any change in the view's @State causes an immediate crash,
+        // but only when running outside of XCode.
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification))
         { _ in
             if self.isLocked && !self.receivedDidBecomeActiveNotification
             {
-                /// \todo Look in debugger; setting to true does nothing?!
+                /// \todo Look in debugger; setting to true does nothing?!  But print(...) shows that
+                /// it changes.  Which is it?
                 self.receivedDidBecomeActiveNotification = true
                 self.authenticate()
             }
@@ -163,7 +181,6 @@ struct ContentView: View
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification))
         { _ in
-
             if self.moc.hasChanges
             {
                 do
@@ -182,6 +199,8 @@ struct ContentView: View
 
             self.receivedDidBecomeActiveNotification = false
             self.isLocked = true
+
+            return
         }
     }
 

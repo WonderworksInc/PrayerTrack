@@ -347,7 +347,12 @@ struct PrayersByPersonList: View
         {
             ForEach(people_with_prayers, id: \.id)
             {person in
-                Section(header: Text("\(person.name)"))
+                Section(
+                    header: Text("\(person.name)")
+                        // Disable the auto-all-caps that iOS does by default.
+                        .textCase(nil)
+                        .font(.headline)
+                    )
                 {
                     ForEach(
                         person.prayers.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
@@ -366,7 +371,12 @@ struct PrayersByPersonList: View
             
             if !prayers_with_no_person.isEmpty
             {
-                Section(header: Text("No one"))
+                Section(
+                    header: Text("No one")
+                        // Disable the auto-all-caps that iOS does by default.
+                        .textCase(nil)
+                        .font(.headline)
+                )
                 {
                     return ForEach(prayers_with_no_person, id: \.id)
                     {prayer in
@@ -445,7 +455,12 @@ struct PrayersByTagList: View
         {if (forceRefresh || !forceRefresh){
             ForEach(tags_with_prayers, id: \.id)
             {tag in
-                Section(header: Text("\(tag.title)"))
+                Section(
+                    header: Text("\(tag.title)")
+                        // Disable the auto-all-caps that iOS does by default.
+                        .textCase(nil)
+                        .font(.headline)
+                )
                 {
                     ForEach(
                         tag.prayers.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),
@@ -464,7 +479,12 @@ struct PrayersByTagList: View
             
             if !prayers_with_no_tag.isEmpty
             {
-                Section(header: Text("No tag"))
+                Section(
+                    header: Text("No tag")
+                        // Disable the auto-all-caps that iOS does by default.
+                        .textCase(nil)
+                        .font(.headline)
+                )
                 {
                     return ForEach(
                         prayers_with_no_tag.filter(GetShowFilter(showArchivedPrayersChoice.wrappedValue, showAnsweredPrayersChoice.wrappedValue)),

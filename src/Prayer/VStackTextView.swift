@@ -12,29 +12,33 @@ struct VStackTextView: View
 {
     @Binding var top: String
     let bottom: String
+    // Save the user's edits to temporary_text to avoid the UI changes that occur when editing
+    // top, which can slow the UI down noticeably.
+    @State private var temporaryText: String
+
+    init(top: Binding<String>, bottom: String)
+    {
+        self._top = top
+        self.bottom = bottom
+        self._temporaryText = .init(initialValue: top.wrappedValue)
+    }
     
     var body: some View
     {
-        // Save the user's edits to temporary_text to avoid the UI changes that occur when editing
-        // top, which can slow the UI down noticeably.
-        var temporary_text = top
-        let temporary_text_binding = Binding<String>(
-            get: {temporary_text},
-            set: {temporary_text = $0}
-        )
-        
         VStack(alignment: .leading){
             //TextEditor(text: $top)
             TextField(
                 bottom,
-                text: temporary_text_binding,
+                text: $temporaryText,
+                /// \todo Use @FocusState in iOS 15 instead of onEditingChanged.
+                ///     https://stackoverflow.com/questions/69050952/swiftui-run-function-on-losing-focus-textfield
                 onEditingChanged: {user_began_editing in
                     let user_finished_editing = !user_began_editing
                     if (user_finished_editing)
                     {
                         // Modify the actual text only when the user is done editing to avoid updating the UI
                         // unnecessarily, which can noticeably slow down the UI.
-                        top = temporary_text
+                        top = self.temporaryText
                     }
                 }
             )
@@ -47,6 +51,8 @@ struct VStackTextView: View
     }
 }
 
+/// \todo Could possibly start using this class again if TextEditor works with @FocusState (iOS 15 only).  See
+///     https://stackoverflow.com/questions/69050952/swiftui-run-function-on-losing-focus-textfield
 struct TextEditorCommitOnlyOnDisappear: View
 {
     @Binding var text: String
@@ -68,9 +74,13 @@ struct TextEditorCommitOnlyOnDisappear: View
         )
 
         return
-            TextEditor(text: temporary_text_binding)
+            TextEditor(text: $temporary_text)
             // Commit the text changes only when the user quits editing the text.
-            .onDisappear(perform: {self.text = temporary_text})
+            .onDisappear(
+                perform: {
+                    self.text = temporary_text
+                }
+            )
     }
 }
 

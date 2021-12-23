@@ -77,7 +77,16 @@ struct PrayerView: View
     @State private var showingPrayedOnCalendar = false
     @State private var showingNewPrayedOnDatePicker = false
     @State private var showingAnsweredDatePicker = false
-    
+    @State private var descriptionNotes = ""
+    @State private var answerDescriptionNotes = ""
+
+    init(prayer: PrayerEntity)
+    {
+        self.prayer = prayer
+        self._descriptionNotes = .init(initialValue: self.prayer.descriptionText)
+        self._answerDescriptionNotes = .init(initialValue: (nil != self.prayer.answerDescriptionAttribute) ? self.prayer.answerDescriptionAttribute! : "")
+    }
+
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \PersonEntity.nameAttribute, ascending: true)]
@@ -170,10 +179,11 @@ struct PrayerView: View
                 VStackTextView(top: title, bottom: "Title")
                 NavigationLink(
                     destination:
-                        TextEditorCommitOnlyOnDisappear(text: descriptionText)
+                        //TextEditorCommitOnlyOnDisappear(text: descriptionText)
+                        TextEditor(text: $descriptionNotes)
                         .navigationBarTitle("Description/Notes"),
                     label: {
-                        let added_text = (descriptionText.wrappedValue.isEmpty ? "" : ":\n" + descriptionText.wrappedValue)
+                        let added_text = (descriptionNotes.isEmpty ? "" : ":\n" + descriptionNotes)
                         Text("Description/Notes" + added_text).lineLimit(2)
                     }
                 )
@@ -206,10 +216,11 @@ struct PrayerView: View
                             Toggle(isOn: answeredAffirmatively, label: {Text("Answered affirmatively")})
                             NavigationLink(
                                 destination:
-                                    TextEditorCommitOnlyOnDisappear(text: answerDescription)
+                                    //TextEditorCommitOnlyOnDisappear(text: answerDescription)
+                                    TextEditor(text: $answerDescriptionNotes)
                                     .navigationBarTitle("Answer Description/Notes"),
                                 label: {
-                                    let added_text = (answerDescription.wrappedValue.isEmpty ? "" : ":\n" + answerDescription.wrappedValue)
+                                    let added_text = (answerDescriptionNotes.isEmpty ? "" : ":\n" + answerDescriptionNotes)
                                     Text("Answer Description/Notes" + added_text).lineLimit(2)
                                 }
                             )
@@ -329,7 +340,24 @@ struct PrayerView: View
                     }
                 )
             }
-            .onDisappear(perform: {self.savePrayer()})
+            .onDisappear(perform: {
+                if (self.prayer.descriptionText != descriptionNotes)
+                {
+                    self.prayer.descriptionText = descriptionNotes;
+                }
+
+                if (self.prayer.answeredAttribute)
+                {
+                    if (
+                        ((nil == self.prayer.answerDescriptionAttribute) && (answerDescriptionNotes != ""))
+                        || ((nil != self.prayer.answerDescriptionAttribute) && (self.prayer.answerDescriptionAttribute! != answerDescriptionNotes))
+                    )
+                    {
+                        self.prayer.answerDescriptionAttribute = answerDescriptionNotes;
+                    }
+                }
+                self.savePrayer()
+            })
             .navigationBarTitle(Text(prayer.title), displayMode: .inline)
     }
     

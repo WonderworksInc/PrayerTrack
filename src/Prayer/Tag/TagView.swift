@@ -104,7 +104,9 @@ struct TagView: View
         // https://www.hackingwithswift.com/books/ios-swiftui/creating-custom-bindings-in-swiftui
         let title = Binding<String>(
             get: {self.tag.title},
-            set: {self.tag.title = $0})
+            set: {
+                self.tag.title = $0
+            })
         
         return Form
         {
